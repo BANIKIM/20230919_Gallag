@@ -19,7 +19,7 @@ public class Player_Controller : MonoBehaviour
         if(movement2D.Move_Speed<=0f)
         {
             movement2D.Move_Speed = 5f;
-        }
+        }   
     }
     private void Update()
     {

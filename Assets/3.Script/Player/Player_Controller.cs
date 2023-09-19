@@ -5,9 +5,11 @@ using UnityEngine;
 public class Player_Controller : MonoBehaviour
 {
     private Movement2D movement2D;
-
+    private int HitCount = 0;
     [SerializeField]private Stage_Data stagedata;
     [SerializeField] private Weapon weapon;
+   
+
 
     private void Awake()
     {
@@ -47,9 +49,18 @@ public class Player_Controller : MonoBehaviour
             Mathf.Clamp(transform.position.y,stagedata.LimitMin.y,stagedata.LimitMax.y),
             0
             );
-
-
     }
 
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Enemy_Bullet"))
+        {
+            HitCount++;
+        }
+        if(HitCount==3)
+        {
+            
+            Destroy(gameObject);
+        }
+    }
 }

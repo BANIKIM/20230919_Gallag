@@ -1,27 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player_Controller : MonoBehaviour
 {
+    //player Hp 관련 변수들 
+    private float MaxHP = 3f;
+    private float currentHP;
+
+    /*
+     프로퍼티 중에 Get 함수를 구현하지 않고도 => 구현을 할수 있다.
+     */
+    public float MAXHP => MaxHP;
+    public float CurrntHP => currentHP;
+
+    private SpriteRenderer renderer;
+    //------------------------------------
+
+
     private Movement2D movement2D;
-    private int HitCount = 0;
+
     [SerializeField]private Stage_Data stagedata;
     [SerializeField] private Weapon weapon;
-   
-
 
     private void Awake()
     {
         movement2D = transform.GetComponent<Movement2D>();
         weapon = transform.GetComponent<Weapon>();
+
+        currentHP = MaxHP;
+        TryGetComponent(out renderer);
+
+
     }
     private void Start()
     {
         if(movement2D.Move_Speed<=0f)
         {
             movement2D.Move_Speed = 5f;
-        }   
+        }
     }
     private void Update()
     {
@@ -50,17 +68,44 @@ public class Player_Controller : MonoBehaviour
             0
             );
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    //데미지 and  Hit Action and 죽는 메소드 만들어 주세용
+    public void TakeDamage(float damage)
     {
-        if(collision.CompareTag("Enemy_Bullet"))
+        currentHP -= damage;
+        Debug.Log("Player Hp : " + currentHP);
+        //HitColor_Action_co
+        StopCoroutine("HitColor_Action_co");
+        StartCoroutine("HitColor_Action_co");
+
+
+        if (currentHP<=0)
         {
-            HitCount++;
+            //디져~
+            onDie();
+            SceneManager.LoadScene("Gameover");
+
         }
-        if(HitCount==3)
-        {
-            
-            Destroy(gameObject);
-        }
+
     }
+    private void onDie()
+    {
+        Destroy(gameObject);
+
+    }
+
+    private IEnumerator HitColor_Action_co()
+    {
+        renderer.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        renderer.color = Color.white;
+
+    }
+
+
+
+
+
+
+
+
 }

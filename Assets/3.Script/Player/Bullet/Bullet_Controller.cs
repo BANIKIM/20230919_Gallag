@@ -30,5 +30,4 @@ public class Bullet_Controller : MonoBehaviour
         }
     }
 
-
 }

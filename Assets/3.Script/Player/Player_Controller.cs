@@ -9,6 +9,7 @@ public class Player_Controller : MonoBehaviour
     private float MaxHP = 3f;
     private float currentHP;
 
+    [SerializeField] private Player_Score score;
     /*
      프로퍼티 중에 Get 함수를 구현하지 않고도 => 구현을 할수 있다.
      */
@@ -28,7 +29,7 @@ public class Player_Controller : MonoBehaviour
     {
         movement2D = transform.GetComponent<Movement2D>();
         weapon = transform.GetComponent<Weapon>();
-
+        score = GetComponent<Player_Score>();
         currentHP = MaxHP;
         TryGetComponent(out renderer);
 
@@ -82,15 +83,14 @@ public class Player_Controller : MonoBehaviour
         {
             //디져~
             onDie();
-            SceneManager.LoadScene("Gameover");
-
         }
 
     }
     private void onDie()
     {
-        Destroy(gameObject);
-
+        score.SaveScore();
+        Destroy(gameObject,1.0f);
+        SceneManager.LoadScene("Gameover");
     }
 
     private IEnumerator HitColor_Action_co()

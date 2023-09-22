@@ -237,6 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15cc35b089addc64a8e4956edf754afb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  score: {fileID: 0}
   stagedata: {fileID: 11400000, guid: d9d0c607edffcee489e83adbc003b5aa, type: 2}
   weapon: {fileID: 0}
 --- !u!114 &184294486
@@ -303,6 +304,55 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Score: {fileID: 237917685}
+--- !u!1 &204912813
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 204912815}
+  - component: {fileID: 204912814}
+  m_Layer: 0
+  m_Name: Enemy_Spawner (1)
+  m_TagString: Enemy_Spawner
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &204912814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204912813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abf074962e400b248b7c701ec1112248, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enemy_count: 10
+  stagedata: {fileID: 11400000, guid: d9d0c607edffcee489e83adbc003b5aa, type: 2}
+  Enemy_Prefabs: {fileID: 4072201469594037828, guid: 71eff369a3fc615478111d310301643b, type: 3}
+  SpawnTime: 1
+  Enemy_HpBar: {fileID: 246752674366852822, guid: f840e128459c89f43b655cd535187148, type: 3}
+  Canvas: {fileID: 1237367821}
+--- !u!4 &204912815
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204912813}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &237917683
 GameObject:
   m_ObjectHideFlags: 0
